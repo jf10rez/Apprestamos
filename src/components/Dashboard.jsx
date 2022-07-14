@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion'
 
 export const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="dashboard">
+    <motion.div className="dashboard"
+      initial={{opacity: 0, x: 100}}
+      animate={{opacity: 1, x: 0}}
+      exit={{opacity: 0, x: -100}}
+      transition={{duration: 0.5}}
+    >
       <h1>¿De cúanto es tu nuevo prestamo?</h1>
 
       <div className="container-prest">
@@ -16,6 +22,6 @@ export const Dashboard = () => {
           Nuevo
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
