@@ -20,6 +20,7 @@ import {
 } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 //import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
@@ -35,6 +36,8 @@ export const SideBar = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div id="header">
@@ -43,7 +46,7 @@ export const SideBar = () => {
           <SidebarHeader>
             <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
+              <p>{menuCollapse ? "App" : "Apprestamos"}</p>
             </div>
             <div className="closemenu" onClick={menuIconClick}>
               {/* changing menu collapse icon on click */}
@@ -51,9 +54,9 @@ export const SideBar = () => {
             </div>
           </SidebarHeader>
           <SidebarContent>
-            <Menu iconShape="square">
+            <Menu iconShape="square" onClick={ () => navigate("/") }>
               <MenuItem active={true} icon={<FiHome />}>
-                Home
+                Inicio
               </MenuItem>
               <MenuItem icon={<FaList />}>Category</MenuItem>
               <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
