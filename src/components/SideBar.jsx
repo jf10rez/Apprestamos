@@ -36,7 +36,14 @@ export const SideBar = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+  const [active, setActive] = useState("/");
+
   const navigate = useNavigate();
+
+  const activeNavigate = (nav) => {
+    setActive(nav);
+    return navigate(nav);
+  };
 
   return (
     <>
@@ -54,11 +61,21 @@ export const SideBar = () => {
             </div>
           </SidebarHeader>
           <SidebarContent>
-            <Menu iconShape="square" onClick={ () => navigate("/") }>
-              <MenuItem active={true} icon={<FiHome />}>
+            <Menu iconShape="square">
+              <MenuItem
+                active={active === "/" ? true : false}
+                onClick={() => activeNavigate("/")}
+                icon={<FiHome />}
+              >
                 Inicio
               </MenuItem>
-              <MenuItem icon={<FaList />}>Category</MenuItem>
+              <MenuItem
+                active={active === "/list" ? true : false}
+                onClick={() => activeNavigate("/list")}
+                icon={<FaList />}
+              >
+                Prestamos
+              </MenuItem>
               <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
               <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
               <MenuItem icon={<BiCog />}>Settings</MenuItem>
