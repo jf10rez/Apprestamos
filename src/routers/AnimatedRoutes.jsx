@@ -10,7 +10,7 @@ import { SideBar } from "../components/SideBar";
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
-  const uid = false;
+  const uid = true;
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
@@ -30,10 +30,13 @@ export const AnimatedRoutes = () => {
           element={
             <PrivateRoute uid={uid}>
               <SideBar />
-
-              <Route path="/new" element={<NewPrestamo />} />
-              <Route path="/list" element={<ListPrestamos />} />
-              <Route path="/" element={<Dashboard />} />
+              <div className="max">
+                <Routes>
+                  <Route path="/new" element={<NewPrestamo />} />
+                  <Route path="/list" element={<ListPrestamos />} />
+                  <Route path="/" element={<Dashboard />} />
+                </Routes>
+              </div>
             </PrivateRoute>
           }
         />
