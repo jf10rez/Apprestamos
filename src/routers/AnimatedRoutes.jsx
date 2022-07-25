@@ -7,10 +7,26 @@ import { Login } from "../components/Login";
 import { PublicRoute } from "./PublicRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { SideBar } from "../components/SideBar";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { startChecking } from "../store/slices/auth/authThunks";
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
-  const uid = true;
+  
+  const { checking, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch( startChecking() )
+  }, [ dispatch ])
+
+  if( checking ){
+    return <h1>Cargando...</h1>
+  }
+  
+
+
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
@@ -18,7 +34,7 @@ export const AnimatedRoutes = () => {
           exact
           path="/login"
           element={
-            <PublicRoute uid={uid}>
+            <PublicRoute uid={user?.uid}>
               <Login />
             </PublicRoute>
           }
@@ -28,7 +44,7 @@ export const AnimatedRoutes = () => {
           exact
           path="/*"
           element={
-            <PrivateRoute uid={uid}>
+            <PrivateRoute uid={user?.uid}>
               <SideBar />
               <div className="max">
                 <Routes>
