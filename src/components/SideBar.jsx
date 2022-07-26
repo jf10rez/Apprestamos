@@ -9,6 +9,7 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
+import { useDispatch } from "react-redux";
 
 //import icons from react icons
 import { FaList, FaRegHeart } from "react-icons/fa";
@@ -25,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 //import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
 import "../index.css";
+import { authLogout } from "../store/slices/auth/authSlice";
 
 export const SideBar = () => {
   //create initial menuCollapse state using useState hook
@@ -35,6 +37,8 @@ export const SideBar = () => {
     //condition checking to change state from true to false and vice versa
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
+
+  const dispatch = useDispatch()
 
   const [active, setActive] = useState("/");
 
@@ -83,7 +87,7 @@ export const SideBar = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem icon={<FiLogOut />} onClick={ () => dispatch( authLogout() ) }>Cerrar</MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

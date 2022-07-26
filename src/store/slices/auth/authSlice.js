@@ -14,6 +14,7 @@ export const authSlice = createSlice({
       state.user = payload
     },
     authLogout: (state) => {
+      localStorage.clear()
       state.checking = false,
       state.user = null
     },
