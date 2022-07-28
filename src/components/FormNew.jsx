@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { newPrestamo } from "../store/slices/prestamos/prestamoThunks";
+import dayjs from "dayjs";
 
 export const FormNew = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const { amount } = useSelector((state) => state.ui);
+  const dispatch = useDispatch();
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    //TODO: Agregar mensajes en los inputs de validaciones
+    data.startDate = dayjs(startDate).format('YYYY/MM/DD') ;
+    dispatch( newPrestamo( data ) )
+  };
   const [startDate, setStartDate] = useState(null);
 
   return (
@@ -21,6 +26,7 @@ export const FormNew = () => {
           <input
             type="number"
             className="form-control"
+            defaultValue={amount ?? null}
             placeholder="Monto"
             {...register("amount", { required: true, max: 20000000 })}
           />
@@ -44,12 +50,20 @@ export const FormNew = () => {
             {...register("name", { required: true })}
           />
         </div>
-        <div className="col-md-6 col-sm-12">
+        <div className="col-md-3 col-sm-6">
           <input
             type="number"
             className="form-control"
-            placeholder="Numero de cuotas"
+            placeholder="Cuotas"
             {...register("quota", { required: true })}
+          />
+        </div>
+        <div className="col-md-3 col-sm-6">
+          <input
+            type="number"
+            className="form-control"
+            placeholder="%"
+            {...register("percentage", { required: true })}
           />
         </div>
       </div>
