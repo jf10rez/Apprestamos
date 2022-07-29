@@ -157,11 +157,11 @@
 table {
   width: 100%;
   table-layout: fixed;
-  font-family: Montserrat, Roboto, monospace;
+  font-family: sans-serif, monospace;
 }
 
 .tbl-header {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgb(0 0 0 / 52%);
 }
 
 .tbl-content {
@@ -174,10 +174,12 @@ table {
 th {
   padding: 20px 15px;
   text-align: left;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 12px;
-  color: rgb(0, 0, 0);
+  color: rgb(255 255 255);
+  letter-spacing: 1px;
   text-transform: uppercase;
+  line-height: 10px;
 }
 
 td {
@@ -248,6 +250,41 @@ td {
   }
 }
 
-.login{
+.login {
   font-family: Montserrat, Roboto, monospace;
+}
+
+.card-prestamo {
+  max-width: 95%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 90vh;
+  margin: -8rem auto;
+}
+
+.papa {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  max-width: 100%;
+}
+
+.hijito {
+  position: relative;
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bi-x-circle {
+  cursor: pointer;
 }
