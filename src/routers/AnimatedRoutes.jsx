@@ -21,11 +21,9 @@ export const AnimatedRoutes = () => {
     dispatch( startChecking() )
   }, [ dispatch ])
 
-  const isNavbar = useMediaQuery({
+  const isResponsive = useMediaQuery({
     query: '(max-width: 777px)'
   })
-
-  console.log(isNavbar)
 
   if( checking ){
     return <h1>Cargando...</h1>
@@ -52,7 +50,7 @@ export const AnimatedRoutes = () => {
           element={
             <PrivateRoute uid={user?.uid}>
               {
-                isNavbar 
+                isResponsive 
                 ? <NavbarResponsive />
                 : <SideBar />
               }
