@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startChecking } from "../store/slices/auth/authThunks";
 import { PrestamoRoutes } from "./PrestamoRoutes";
+import { useMediaQuery } from 'react-responsive'
+import { NavbarResponsive } from "../components/NavbarResponsive";
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
@@ -18,6 +20,12 @@ export const AnimatedRoutes = () => {
   useEffect(() => {
     dispatch( startChecking() )
   }, [ dispatch ])
+
+  const isNavbar = useMediaQuery({
+    query: '(max-width: 777px)'
+  })
+
+  console.log(isNavbar)
 
   if( checking ){
     return <h1>Cargando...</h1>
@@ -43,7 +51,12 @@ export const AnimatedRoutes = () => {
           path="/*"
           element={
             <PrivateRoute uid={user?.uid}>
-              <SideBar />
+              {
+                isNavbar 
+                ? <NavbarResponsive />
+                : <SideBar />
+              }
+              
               <div className="max">
                   <PrestamoRoutes />
               </div>
