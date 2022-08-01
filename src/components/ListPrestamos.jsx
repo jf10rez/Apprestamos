@@ -1,15 +1,17 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePrestamo } from "../store/slices/prestamos/prestamoSlice";
 import { CardDetailPrestamo } from "./CardDetailPrestamo";
 
 export const ListPrestamos = () => {
+  const dispatch = useDispatch();
   const { prestamos } = useSelector((state) => state.prestamos);
   const [selectedId, setSelectedId] = useState(null);
   return (
     <motion.div
       initial={{ width: "0vw", x: "100" }}
-      animate={{ width: "51vw", x: 0 }}
+      animate={{ width: "56vw", x: 0 }}
       transition={{ duration: 1, origin: 1 }}
     >
       <h1 className="title-list">Lista de prestamos</h1>
@@ -28,7 +30,7 @@ export const ListPrestamos = () => {
                   <th>Nombre</th>
                   <th>Monto</th>
                   <th>Cuotas</th>
-                  <th>Change %</th>
+                  <th>Opciones</th>
                 </tr>
               </thead>
             </table>
@@ -46,9 +48,16 @@ export const ListPrestamos = () => {
                       <motion.button
                         layoutId={prestamo.id}
                         className="btn btn-success"
-                        onClick={() => setSelectedId(prestamo.id)}
+                        onClick={() => {
+                          setSelectedId(prestamo.id);
+                          dispatch(setActivePrestamo(prestamo));
+                        }}
                       >
                         <i className="bi bi-arrows-angle-expand"></i>
+                      </motion.button>
+
+                      <motion.button className="btn btn-danger ml-3">
+                        <i className="bi bi-trash-fill"></i>
                       </motion.button>
                     </td>
                   </tr>
