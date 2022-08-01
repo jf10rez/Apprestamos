@@ -53,7 +53,7 @@ export const SideBar = () => {
     <>
       <div id="header">
         {/* collapsed props to change menu size using menucollapse state */}
-        <ProSidebar collapsed={menuCollapse}>
+        <ProSidebar collapsed={menuCollapse} breakPoint="sm">
           <SidebarHeader>
             <div className="logotext">
               {/* small and big change using menucollapse state */}
