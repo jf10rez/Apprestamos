@@ -1,18 +1,96 @@
+import { useDispatch, useSelector } from "react-redux";
+import { clearActivePrestamo } from "../store/slices/prestamos/prestamoSlice";
+import DatePicker from "react-datepicker";
+import { addMount } from "../helpers/addMounth";
 
+export const CardDetailPrestamo = ({ setSelectedId }) => {
+  const dispatch = useDispatch();
+  const { prestamoSelected } = useSelector((state) => state.prestamos);
 
-export const CardDetailPrestamo = ({ prestamo, setSelectedId }) => {
+  if( !prestamoSelected ) return
   return (
     <div className="card text-white bg-success mb-3 card-prestamo">
       <div className="card-header">
-        <span>Header</span>
-        <i className="bi bi-x-circle" onClick={ () => setSelectedId( null ) }></i>
+        <span>{ prestamoSelected.name }</span>
+        <i
+          className="bi bi-x-circle"
+          onClick={() => {
+            setSelectedId(null);
+            dispatch(clearActivePrestamo());
+          }}
+        ></i>
       </div>
       <div className="card-body">
-        <h5 className="card-title">Success card title</h5>
-        <p className="card-text">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-        </p>
+        <div className="row p-2">
+          <div className="col-md-6">
+            <label htmlFor="amount"> Monto prestamo </label>
+            <input
+              type="number"
+              disabled={true}
+              value={prestamoSelected.amount}
+              className="form-control"
+              name="amount"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="remaining"> Prestamo restante </label>
+            <input
+              type="number"
+              disabled={true}
+              value={prestamoSelected.remainingAmount}
+              className="form-control"
+              name="remaining"
+            />
+          </div>
+        </div>
+        <div className="row p-2">
+          <div className="col-md-6">
+            <label htmlFor="amount"> Fecha inicial prestamo </label>
+            <DatePicker
+              selected={new Date(prestamoSelected.startDate)}
+              disabled={true}
+              placeholderText="Fecha de prestamo"
+              className="form-control"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="next"> Próximo pago </label>
+            <DatePicker
+              selected={addMount(new Date(prestamoSelected.startDate))}
+              disabled={true}
+              placeholderText="Próximo pago"
+              className="form-control"
+            />
+          </div>
+        </div>
+        <div className="row p-2">
+          <div className="col-md-6">
+            <label> Cuotas restantes </label>
+            <input
+              type="text"
+              disabled={true}
+              value={`${prestamoSelected.currentQuota} de ${prestamoSelected.quota}`}
+              className="form-control"
+            />
+          </div>
+          <div className="col-md-6">
+            <label> Porcentaje de prestamo </label>
+            <input
+              type="text"
+              disabled={true}
+              value={`${prestamoSelected.percentage}%`}
+              className="form-control"
+            />
+          </div>
+        </div>
+        <div className="row p-2">
+          <div className="col-md-6">
+            <button className="btn btn-primary">Editar prestamo</button>
+          </div>
+          <div className="col-md-6">
+            <button className="btn btn-primary">Pago total</button>
+          </div>
+        </div>
       </div>
     </div>
   );
