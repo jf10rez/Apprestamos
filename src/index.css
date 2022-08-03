@@ -182,6 +182,27 @@ th {
   line-height: 10px;
 }
 
+@media (max-width: 450px) {
+  th {
+    font-size: 9px;
+  }
+}
+
+.btn-pay {
+  margin: 0;
+}
+
+.btn-expand-info {
+  margin-right: 1px;
+}
+
+@media (max-width: 450px) {
+  .btn-pay {
+    margin-top: 10px;
+  }
+}
+
+
 td {
   padding: 15px;
   text-align: left;
@@ -287,4 +308,16 @@ td {
 
 .bi-x-circle {
   cursor: pointer;
+}
+
+.link-navbar {
+  text-decoration: none;
+  color: white;
+  font-family: Montserrat, Roboto, monospace;;
+}
+
+.btn-logout {
+  font-size: 26px;
+  color: white;
+  margin-top: 6px;
 }
