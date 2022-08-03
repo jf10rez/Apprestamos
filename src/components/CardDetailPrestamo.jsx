@@ -88,7 +88,7 @@ export const CardDetailPrestamo = ({ setSelectedId }) => {
             <button className="btn btn-primary">Editar prestamo</button>
           </div>
           <div className="col-md-6">
-            <button className="btn btn-primary">Pago total</button>
+            <button className="btn btn-primary btn-pay">Pago total</button>
           </div>
         </div>
       </div>
