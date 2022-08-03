@@ -1,17 +1,21 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 import { setActivePrestamo } from "../store/slices/prestamos/prestamoSlice";
 import { CardDetailPrestamo } from "./CardDetailPrestamo";
 
 export const ListPrestamos = () => {
+  const isResponsive = useMediaQuery({
+    query: '(max-width: 777px)'
+  })
   const dispatch = useDispatch();
   const { prestamos } = useSelector((state) => state.prestamos);
   const [selectedId, setSelectedId] = useState(null);
   return (
     <motion.div
       initial={{ width: "0vw", x: "100" }}
-      animate={{ width: "56vw", x: 0 }}
+      animate={{ width: isResponsive ? "100vw" : "56vw", x: 0 }}
       transition={{ duration: 1, origin: 1 }}
     >
       <h1 className="title-list">Lista de prestamos</h1>
@@ -47,7 +51,7 @@ export const ListPrestamos = () => {
                     <td>
                       <motion.button
                         layoutId={prestamo.id}
-                        className="btn btn-success"
+                        className="btn btn-success btn-expand-info"
                         onClick={() => {
                           setSelectedId(prestamo.id);
                           dispatch(setActivePrestamo(prestamo));
