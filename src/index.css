@@ -282,9 +282,22 @@ td {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
   height: 90vh;
   margin: -8rem auto;
+}
+
+#modal-pin {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  border: 1px solid rgb(255 255 255) !important;
+  background: #24c48f !important
+}
+
+#modal-pin h4 {
+  margin-left: 43px;
+  color: white;
+  font-family: sans-serif;
 }
 
 .papa {
@@ -313,7 +326,8 @@ td {
 .link-navbar {
   text-decoration: none;
   color: white;
-  font-family: Montserrat, Roboto, monospace;;
+  font-family: Montserrat, Roboto, monospace;
+  ;
 }
 
 .btn-logout {
