@@ -23,6 +23,10 @@ export const prestamoSlice = createSlice({
     clearActivePrestamo: (state) => {
       state.prestamoSelected = null;
     },
+    modifyPrestamo: (state, { payload }) => {
+      state.prestamos = state.prestamos.filter((prest) => prest.id !== payload.id)
+      state.prestamos.push(payload)
+    },
   },
 });
 
@@ -32,6 +36,7 @@ export const {
   loadPrestamos,
   setActivePrestamo,
   clearActivePrestamo,
+  modifyPrestamo
 } = prestamoSlice.actions;
 
 export default prestamoSlice.reducer;
