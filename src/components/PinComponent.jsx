@@ -2,9 +2,8 @@ import { useState } from "react";
 import Modal from "react-modal";
 import PinInput from "react-pin-input";
 import { useDispatch } from "react-redux";
-import { startModifyPrestamo } from "../store/slices/prestamos/prestamoThunks";
 
-export const PinComponent = ({ isModalOpen, setIsModalOpen, data }) => {
+export const PinComponent = ({ isModalOpen, setIsModalOpen, data, action }) => {
 
   const [pin, setPin] = useState("")
   const dispatch = useDispatch()
@@ -15,10 +14,9 @@ export const PinComponent = ({ isModalOpen, setIsModalOpen, data }) => {
 
   const handleConfirm = () => {
     if( !pin ) return
+    const newObject = { ...data, pin: pin }
 
-    data.pin = pin
-
-    dispatch( startModifyPrestamo( data ) )
+    dispatch( action( newObject ) )
     setIsModalOpen(false)
 
   }
