@@ -12,23 +12,28 @@ export const CardDetailPrestamo = ({ setSelectedId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [formValues, handleInputChange] = useForm({
-    amount: prestamoSelected?.amount,
     startDate: new Date(prestamoSelected?.startDate),
+    name: prestamoSelected?.name,
+    document: prestamoSelected?.document,
+    id: prestamoSelected?.id
   });
 
-  const { amount, startDate } = formValues;
+  const { startDate } = formValues;
 
   const handleEdit = (e) => {
     setIsModalOpen(true);
-    return;
-    e.preventDefault();
-    console.log(formValues);
   };
 
   if (!prestamoSelected) return;
   return (
     <div className="card text-white bg-success mb-3 card-prestamo">
-      {isModalOpen && <PinComponent isModalOpen={isModalOpen} />}
+      {isModalOpen && (
+        <PinComponent
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          data={formValues}
+        />
+      )}
       <div className="card-header">
         <span>{prestamoSelected.name}</span>
         <i
@@ -45,10 +50,10 @@ export const CardDetailPrestamo = ({ setSelectedId }) => {
             <label htmlFor="amount"> Monto prestamo </label>
             <input
               type="number"
-              value={amount}
+              value={prestamoSelected?.amount}
               className="form-control"
               name="amount"
-              onChange={handleInputChange}
+              disabled={true}
             />
           </div>
           <div className="col-md-6">
