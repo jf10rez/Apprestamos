@@ -5,6 +5,7 @@ import { addMount } from "../helpers/addMounth";
 import { useForm } from "../hooks/useForm";
 import { PinComponent } from "./PinComponent";
 import { useState } from "react";
+import { startModifyPrestamo } from "../store/slices/prestamos/prestamoThunks";
 
 export const CardDetailPrestamo = ({ setSelectedId }) => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export const CardDetailPrestamo = ({ setSelectedId }) => {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           data={formValues}
+          action={ startModifyPrestamo }
         />
       )}
       <div className="card-header">
