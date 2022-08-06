@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { setActivePrestamo } from "../store/slices/prestamos/prestamoSlice";
 import { CardDetailPrestamo } from "./CardDetailPrestamo";
+import { DeleteButton } from "./DeleteButton";
 
 export const ListPrestamos = () => {
   const isResponsive = useMediaQuery({
@@ -60,9 +61,7 @@ export const ListPrestamos = () => {
                         <i className="bi bi-arrows-angle-expand"></i>
                       </motion.button>
 
-                      <motion.button className="btn btn-danger ml-3">
-                        <i className="bi bi-trash-fill"></i>
-                      </motion.button>
+                      <DeleteButton prestamo={ prestamo } />
                     </td>
                   </tr>
                 ))}
