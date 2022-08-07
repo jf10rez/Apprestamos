@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom";
 import { startLogin } from "../store/slices/auth/authThunks";
 
 export const Login = () => {
@@ -13,6 +14,8 @@ export const Login = () => {
       dispatch( startLogin( email, password ) )
     }
   }
+
+  const navigate = useNavigate();
 
   //TODO: Crear mensajes de error en los inputs
 
@@ -74,7 +77,7 @@ export const Login = () => {
                 <div className="row mb-4">
 
                   <div className="col">
-                    <a href="#!">Forgot password?</a>
+                    <button className="btn btn-outline-primary" onClick={ () => navigate("/register") }>Registrarse</button>
                   </div>
                 </div>
               </form>
