@@ -5,6 +5,7 @@ import { ListPrestamos } from "../components/ListPrestamos";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startLoadPrestamos } from "../store/slices/prestamos/prestamoThunks";
+import { Units } from "../pages/Units";
 
 export const PrestamoRoutes = () => {
 
@@ -21,6 +22,7 @@ export const PrestamoRoutes = () => {
     <Routes>
       <Route path="/new" element={<NewPrestamo />} />
       <Route path="/list" element={<ListPrestamos />} />
+      <Route path="/units" element={<Units />} />
       <Route path="/" element={<Dashboard />} />
     </Routes>
   );
