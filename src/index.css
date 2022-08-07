@@ -335,3 +335,16 @@ td {
   color: white;
   margin-top: 6px;
 }
+
+.btn-units {
+  margin: 1rem;
+}
+
+.table-unit {
+  width: 50%;
+}
+
+.container-table {
+  display: flex;
+  justify-content: center;
+}
