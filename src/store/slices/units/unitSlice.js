@@ -10,7 +10,7 @@ export const unitSlice = createSlice({
   initialState,
   reducers: {
     newUnits: (state, { payload }) => {
-      units.push( payload )
+      state.units.push( payload )
     },
     loadUnits: (state, { payload }) => {
         state.units = payload

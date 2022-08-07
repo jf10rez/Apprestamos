@@ -16,9 +16,10 @@ export const startNewUnit = ( unit ) => {
             }
 
             Swal.fire("Éxito", "Se registraron las unidades correctamente", "success")
-            dispatch( newUnits( responseUnit.units ) )
+            dispatch( newUnits( responseUnit?.units ) )
             
         } catch (error) {
+            console.log(error)
             Swal.fire("Ups!", error, "error")
         }
 
