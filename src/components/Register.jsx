@@ -11,7 +11,7 @@ export const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const { email, password } = data;
+    const { email, password, celPhone, pin } = data;
     if (email && password && celPhone && pin) {
       dispatch(startRegister(data));
     }
@@ -88,13 +88,38 @@ export const Register = () => {
                     {...register("pin", {
                       required: "Complete el pin",
                       maxLength: {
+                        value: 4,
+                        message: "No puede contener mas de 4 caracteres",
+                      },
+                      minLength: {
+                        value: 4,
+                        message: "Minimo 4 caracteres",
+                      },
+                    })}
+                  />
+                  {errors.pin && (
+                    <p className="message-error">{errors.pin.message}</p>
+                  )}
+                </div>
+              </div>
+              <div className="row row-register">
+                <div className="col-md-6 col-sm-12">
+                  <input
+                    type="text"
+                    id="form2Example2"
+                    className="form-control"
+                    placeholder="Nombre completo"
+                    {...register("name", {
+                      required: "Complete el Nombre",
+                      maxLength: {
                         value: 30,
                         message: "No puede contener mas de 4 caracteres",
                       },
                     })}
                   />
                 </div>
-                  <div className="card-body">
+                <div className="col-md-6 col-sm-12">
+                  <div>
                     <button
                       type="submit"
                       className="btn btn-success btn-block mb-4"
@@ -102,6 +127,7 @@ export const Register = () => {
                       Crear cuenta
                     </button>
                   </div>
+                </div>
               </div>
             </form>
           </div>
