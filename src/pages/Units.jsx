@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { getUnit, startNewUnit } from "../store/slices/units/unitThunks";
 import { TableUnits } from "../components/TableUnits";
+import Swal from "sweetalert2"
 
 export const Units = () => {
   const [amount, setAmountLocal] = useState(null);
