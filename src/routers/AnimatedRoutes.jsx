@@ -8,28 +8,27 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startChecking } from "../store/slices/auth/authThunks";
 import { PrestamoRoutes } from "./PrestamoRoutes";
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from "react-responsive";
 import { NavbarResponsive } from "../components/NavbarResponsive";
+import { Register } from "../components/Register";
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
-  
+
   const { checking, user } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch( startChecking() )
-  }, [ dispatch ])
+    dispatch(startChecking());
+  }, [dispatch]);
 
   const isResponsive = useMediaQuery({
-    query: '(max-width: 777px)'
-  })
+    query: "(max-width: 777px)",
+  });
 
-  if( checking ){
-    return <h1>Cargando...</h1>
+  if (checking) {
+    return <h1>Cargando...</h1>;
   }
-  
-
 
   return (
     <AnimatePresence>
@@ -46,17 +45,23 @@ export const AnimatedRoutes = () => {
 
         <Route
           exact
+          path="/register"
+          element={
+            <PublicRoute uid={user?.uid}>
+              <Register />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          exact
           path="/*"
           element={
             <PrivateRoute uid={user?.uid}>
-              {
-                isResponsive 
-                ? <NavbarResponsive />
-                : <SideBar />
-              }
-              
+              {isResponsive ? <NavbarResponsive /> : <SideBar />}
+
               <div className="max">
-                  <PrestamoRoutes />
+                <PrestamoRoutes />
               </div>
             </PrivateRoute>
           }
