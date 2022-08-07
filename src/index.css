@@ -348,3 +348,12 @@ td {
   display: flex;
   justify-content: center;
 }
+
+.container-register {
+  padding: 3rem;
+}
+
+.row-register {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
