@@ -26,8 +26,8 @@ export const startLogin = (email, password) => {
 export const startRegister = (user) => {
   return async (dispatch) => {
     try {
-      const newUser = await fetchWithoutToken("register", user, "POST");
-      const { ok, uid, token, message = "" } = await newUser.json();
+      const newUser = await fetchWithoutToken("auth/new", user, "POST");
+      const { ok, user: u, token, message = "" } = await newUser.json();
 
       if (!ok) {
         Swal.fire("Ups!", message, "error");
@@ -36,8 +36,9 @@ export const startRegister = (user) => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("token-init-date", new Date().getTime());
-      dispatch(authLogin({ uid, email }));
+      dispatch(authLogin({ uid: u.id, email: u.email }));
     } catch (error) {
+        console.log(error)
       Swal.fire("Ups!", error, "error");
     }
   };
