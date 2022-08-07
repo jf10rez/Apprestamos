@@ -357,3 +357,15 @@ td {
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
+
+.message-error {
+  color: #d31313;
+  margin: 2px, 2px, 2px 2px;
+  font-family: 'Akshar', sans-serif;
+  font-size: small;
+}
+
+.message-error::before {
+  display: inline;
+  content: "⚠ ";
+}
