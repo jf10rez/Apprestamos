@@ -18,8 +18,9 @@ import {
   FiLogOut,
   FiArrowLeftCircle,
   FiArrowRightCircle,
+  FiDollarSign,
+  FiGift
 } from "react-icons/fi";
-import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
@@ -76,13 +77,11 @@ export const SideBar = () => {
               <MenuItem
                 active={active === "/list" ? true : false}
                 onClick={() => activeNavigate("/list")}
-                icon={<FaList />}
+                icon={<FiGift />}
               >
                 Prestamos
               </MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
-              <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
-              <MenuItem icon={<BiCog />}>Settings</MenuItem>
+              <MenuItem icon={<FiDollarSign />} onClick={() => activeNavigate("units")}>Unidades</MenuItem>
             </Menu>
           </SidebarContent>
           <SidebarFooter>
